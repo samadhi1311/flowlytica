@@ -1,0 +1,29 @@
+/* Resetting default styles */
+* {
+	margin: 0;
+	padding: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	box-sizing: border-box;
+	width: fit-content;
+}
+
+body {
+	font-family: 'Inter', sans-serif;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.1;
+}
+
+ol,
+ul,
+dl {
+	list-style: none;
+}
+
+a {
+	cursor: pointer;
+	text-decoration: none;
+	color: inherit;
+}
