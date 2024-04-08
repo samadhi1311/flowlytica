@@ -32,62 +32,46 @@ function App() {
 					<div className='form'>
 						<div className='platform-options'>
 							<fieldset>
-								<legend style={{ marginLeft: '0.5rem', padding: '0 0.25rem' }}>Platform options</legend>
-								<div className='form-field'>
-									<label htmlFor='platform'>Platform: </label>
-									<select name='platform' id='platform' onChange={(e) => setPlatform(e.target.value)}>
-										<option value='pinterest'>Pinterest</option>
-										<option value='instagram'>Instagram</option>
-										<option value='facebook'>Facebook</option>
-									</select>
-								</div>
+								<legend style={{ padding: '0 0.5rem' }}>Platform:</legend>
 
-								<div className='form-field'>
-									<label htmlFor='entity'>Entity:</label> {/* Corrected htmlFor value */}
-									<select name='entity' id='entity'>
-										{entities.map((entity) => (
-											<option key={entity} value={entity}>
-												{entity}
-											</option>
-										))}
-									</select>
-								</div>
-
-								<div className='form-field'>
-									<label htmlFor='url'>Username/URL:</label>
+								<span className='form-field'>
+									<label htmlFor='url'>URL:</label>
 									<input type='text' name='url' id='url' />
-								</div>
+								</span>
 							</fieldset>
 						</div>
 
 						<div className='additional-options'>
 							<fieldset>
-								<legend style={{ marginLeft: '0.5rem', padding: '0 0.25rem' }}>Select time frame:</legend>
-								<div className='form-field'>
+								<legend style={{ padding: '0 0.5rem' }}>time frame:</legend>
+								<span className='form-field'>
 									<input type='date' name='time-range-start' id='time-range-start' />
 									<label>to: </label>
-									<input type='date' name='time-range-end' id='time-range-end' />
-								</div>
+									<input type='date' name='time-range-end' id='time-range-end' defaultValue={new Date().toISOString().split('T')[0]} />
+								</span>
 							</fieldset>
 							<fieldset>
-								<legend style={{ marginLeft: '0.5rem', padding: '0 0.25rem' }}>Choose media type:</legend>
-								<div className='form-field'>
-									<input type='checkbox' name='photos' id='photos' />
-									<label htmlFor='photos'>Photos</label>
-									<input type='checkbox' name='videos' id='videos' style={{ marginLeft: '1.5rem' }} />
-									<label htmlFor='videos'>Videos</label>
-								</div>
+								<legend style={{ padding: '0 0.5rem' }}>media type:</legend>
+								<span className='form-field'>
+									<span>
+										<input type='checkbox' name='text' id='text' />
+										<label htmlFor='text'>Text</label>
+									</span>
+									<span>
+										<input type='checkbox' name='photos' id='photos' style={{ marginLeft: '1.5rem' }} />
+										<label htmlFor='photos'>Photos</label>
+									</span>
+								</span>
 							</fieldset>
 						</div>
-						<div className='form-field' style={{ marginTop: '1rem' }}>
+						<span style={{ marginTop: '1rem' }}>
 							<button type='submit' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.75rem' }}>
 								<span class='material-symbols-outlined'>search_insights</span>
-								Submit
+								Analyze
 							</button>
-						</div>
+						</span>
 					</div>
 				</form>
-				<div className='about-container'></div>
 			</section>
 
 			<section className='results'></section>
