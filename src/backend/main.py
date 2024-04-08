@@ -2,14 +2,16 @@
 
 # Import flask
 from flask import Flask, jsonify
+from flask_cors import CORS
 
 app = Flask(__name__)
+cors = CORS(app, origins='*')
 
-@app.route('/api/users', methods=['GET'])
+@app.route('/api/sithu', methods=['GET'])
 def users():
     return jsonify(
         {
-            "users": [
+            "sithu": [
                 'sithu',
                 'sama'
             ]
@@ -17,4 +19,4 @@ def users():
 	)
 
 if __name__ == "__main__":
-    app.run(debug=True, port=1208)
+    app.run(debug=True, port=812)
