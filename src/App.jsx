@@ -1,31 +1,31 @@
 import { useEffect, useState } from 'react';
 import logo from './assets/flowlytica-mono.svg';
 import './App.css';
+import axios from 'axios';
 
 function App() {
-	const [platform, setPlatform] = useState('pinterest');
-	const [entities, setEntities] = useState([]);
+	const [array, setArray] = useState([]);
+
+	const fetchAPI = async () => {
+		const response = await axios.get('http://localhost:812/api/sithu');
+		setArray(response.data.sithu);
+	};
 
 	useEffect(() => {
-		fetchEntities();
-	}, [platform]);
-
-	function fetchEntities() {
-		if (platform === 'pinterest') {
-			setEntities(['User', 'Board']);
-		} else if (platform === 'instagram') {
-			setEntities(['Profile']);
-		} else if (platform === 'facebook') {
-			setEntities(['Profile', 'Page']);
-		}
-	}
+		fetchAPI();
+	}, []);
 
 	return (
 		<main>
-			<div class='gradient'></div>
+			<div className='gradient'></div>
 			<section className='heading'>
 				<img src={logo} className='logo' />
 				<h1>_flowlytica</h1>
+				<div>
+					{array.map((item, index) => (
+						<p key={index}>{item}</p>
+					))}
+				</div>
 			</section>
 			<section className='input-section'>
 				<form action='' className='form-container'>
@@ -65,9 +65,11 @@ function App() {
 							</fieldset>
 						</div>
 						<span style={{ marginTop: '1rem' }}>
-							<button type='submit' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.75rem' }}>
-								<span class='material-symbols-outlined'>search_insights</span>
-								Analyze
+							<button type='submit' className='button'>
+								<span className='button-content'>
+									<span className='material-symbols-outlined'>search_insights</span>
+									Analyze
+								</span>
 							</button>
 						</span>
 					</div>
