@@ -186,11 +186,11 @@ input[type='checkbox']:checked * {
 	width: 100%;
 	height: inherit;
 	border-radius: inherit;
+	background: linear-gradient(45deg, rgba(55, 235, 169, 0.6) 0%, hsla(252, 82%, 57%, 0.6) 50%);
 	background-size: 300%;
-	background: linear-gradient(45deg, rgba(55, 235, 169, 0.6) 10.8%, hsla(252, 82%, 57%, 0.6) 94.3%);
 	transition: all 300ms ease-in-out;
 }
 
 .button:hover::before {
-	filter: blur(20px);
+	filter: blur(24px);
 }
