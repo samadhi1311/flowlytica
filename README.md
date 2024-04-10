@@ -20,8 +20,11 @@
 
 1. Clone the repo from Github.
 2. Open in your code editor and in the main directory run `npm install`.
-3. In a new terminal windows, change the directory to `src/backend` and run `pip install` and then `python main.py`.
-4. In the terminal of main directory, run `npm run dev'`.
+3. In a new splitted terminal, create a new Python Virtual Environment by running `py -3 -m venv .venv`.
+4. Then activate the Virtual Environment by running `.venv\Scripts\activate`.
+5. Install requirements by running `pip install Flask Flask-CORS beautifulsoup4 requests`.
+6. The change the directory to `src/backend` and run `python main.py` to run the Python backend.
+7. Finally, run `npm run dev` to start the React frontend.
 
 #### Project plan
 
@@ -31,9 +34,9 @@
 
 #### Application procedure
 
-1. Get the URL, time range and media type from the frontend and pass to the backend.
-2. Identify the social media platform and entity status (Eg: public/private).
-3. Scrape the URL and download media.
-4. Process media using relavent models.
-5. Send results as `json` to the frontend.
-6. Visualize results in the frontend.
+-   [x] Get the URL, count and media types from the frontend and pass to the backend.
+-   [ ] Identify the social media platform and entity status (Eg: public/private).
+-   [ ] Scrape the URL and download media.
+-   [ ] Process media using relavent models.
+-   [ ] Send results as `json` to the frontend.
+-   [ ] Visualize results in the frontend.
