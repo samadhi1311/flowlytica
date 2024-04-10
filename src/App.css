@@ -1,5 +1,6 @@
 :root {
 	color-scheme: dark;
+	scrollbar-width: none;
 	--border-color: #ffffff15;
 }
 
@@ -13,7 +14,7 @@
 }
 
 .gradient {
-	--size: 250px;
+	--size: 1024px;
 	--speed: 30s;
 	--easing: cubic-bezier(0.8, 0.2, 0.2, 0.8);
 	width: var(--size);
@@ -21,9 +22,8 @@
 	position: fixed;
 	top: 25%;
 	left: 25%; /* Align to the left of the viewport */
-	filter: blur(calc(var(--size) / 5));
-	transform: translate(-50%, -50%);
-	background-image: linear-gradient(hsla(158, 82%, 57%, 0.548), hsla(252, 82%, 57%, 0.596));
+	filter: blur(96px);
+	background-image: linear-gradient(hsla(268, 82%, 57%, 0.4), hsla(221, 82%, 57%, 0.4));
 	animation: rotate var(--speed) var(--easing) alternate infinite;
 	border-radius: 30% 70% 70% 30%/30% 30% 70% 70%;
 	z-index: -999;
@@ -31,7 +31,7 @@
 
 @media (min-width: 720px) {
 	.gradient {
-		--size: 500px;
+		--size: 768px;
 	}
 }
 
@@ -94,7 +94,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	align-items: flex-start;
+	align-items: center;
 	width: 100%;
 }
 
@@ -102,7 +102,7 @@ body {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	justify-content: flex-start;
+	justify-content: center;
 	width: 100%;
 	padding: 0.5rem 2.5rem;
 }
@@ -139,6 +139,7 @@ select {
 	color: white;
 	background-color: transparent;
 	width: 100%;
+	transition: all 300ms ease-in-out;
 }
 
 select * {
@@ -146,14 +147,18 @@ select * {
 	border: var(--border-color);
 }
 
-input:focus,
+input[type='text']:focus,
+input[type='date']:focus,
 select:focus,
 option:focus {
-	outline: none;
-	box-shadow: 2px 2px 16px hsla(0, 0%, 0%, 0.5);
+	outline: 1px solid hsl(268, 100%, 65%);
+	box-shadow: 2px 2px 8px hsla(0, 0%, 0%, 0.8);
 }
 
-input[type='checkbox']:checked * {
+input[type='checkbox'] {
+	accent-color: hsl(268, 100%, 65%);
+	scale: 1.25;
+	margin-right: 0.25rem;
 	transition: all 300ms ease-in-out;
 }
 
@@ -186,11 +191,32 @@ input[type='checkbox']:checked * {
 	width: 100%;
 	height: inherit;
 	border-radius: inherit;
-	background: linear-gradient(45deg, rgba(55, 235, 169, 0.6) 0%, hsla(252, 82%, 57%, 0.6) 50%);
+	background: linear-gradient(45deg, hsla(268, 82%, 57%, 0.6) 0%, hsla(221, 82%, 57%, 0.6) 50%);
 	background-size: 300%;
 	transition: all 300ms ease-in-out;
 }
 
 .button:hover::before {
 	filter: blur(24px);
+}
+
+.results {
+	min-height: 100vh;
+}
+
+.hint {
+	width: 100%;
+	font-size: 0.9rem;
+	font-weight: 500;
+	color: hsl(0, 0%, 50%);
+	padding: 0.25rem 0.5rem;
+	opacity: 0;
+	transition: opacity 300ms ease;
+	transition-delay: 300ms;
+	text-align: center;
+}
+
+fieldset:hover .hint,
+fieldset:focus .hint {
+	opacity: 1;
 }
