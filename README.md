@@ -44,8 +44,8 @@
 #### Application procedure
 
 -   [x] Get the URL, count and media types from the frontend and pass to the backend.
--   [ ] Identify the social media platform and entity status (Eg: public/private).
 -   [x] Scrape the URL and download media.
--   [ ] Process media using relavent models.
+-   [x] Process images and extract captions.
+-   [ ] Extract keywords.
 -   [ ] Send results as `json` to the frontend.
 -   [ ] Visualize results in the frontend.

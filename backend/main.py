@@ -3,6 +3,8 @@
 # Import flask
 from flask import Flask, json, jsonify, request
 from flask_cors import CORS
+from ural import get_normalized_hostname
+from pinterest import pinterest
 
 app = Flask(__name__)
 cors = CORS(app, origins='*')
@@ -34,6 +36,13 @@ def analyze():
     print('count: ', count)
     print('text: ', text)
     print('images: ', images)
+
+    hostname = get_normalized_hostname(url)
+
+    print(hostname)
+
+    if "pinterest" in hostname:
+        pinterest(url, count, text, images)
 
     return jsonify({'message': 'Data received successfully'})
 
