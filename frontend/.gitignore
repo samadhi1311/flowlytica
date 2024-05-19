@@ -188,3 +188,4 @@ cython_debug/
 
 # Other
 assets
+src/backend/temp
