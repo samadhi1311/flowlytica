@@ -13,6 +13,10 @@ frontend/src/temp
 stats.html
 .eslintcache
 
+# Python cache
+backend/__pycache__
+
 # Downloaded images
 backend/pinterest
 backend/instagram
+
