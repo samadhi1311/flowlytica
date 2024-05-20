@@ -13,4 +13,7 @@ def captionize(url):
     inputs = processor(raw_image, return_tensors="pt")
 
     out = model.generate(**inputs, max_new_tokens=32)
+
+    print("Caption: ")
     print(processor.decode(out[0], skip_special_tokens=True))
+    print("\n")
