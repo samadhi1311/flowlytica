@@ -29,11 +29,9 @@
 
 1. Clone the repo from Github.
 2. Open in your code editor and in the frontend directory run `npm install`.
-3. In a new splitted terminal, navigate to backend create a Python Virtual Environment by running `py -3 -m venv .venv`.
-4. Then activate the Virtual Environment by running `.venv\Scripts\activate`.
-5. Install requirements by running `pip install Flask Flask-CORS beautifulsoup4 requests`.
-6. Then run `python main.py` to run the Python backend.
-7. Finally, run `npm run dev` in the other terminal to start the React frontend.
+3. In a new splitted terminal, navigate to backend and install requirements using `pip install -r requirements.txt`.
+4. Then run `python main.py` to run the Python backend.
+5. Finally, run `npm run dev` in the other terminal to start the React frontend.
 
 #### Project plan
 
