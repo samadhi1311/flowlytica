@@ -1,7 +1,5 @@
 from selenium import webdriver
 from bs4 import BeautifulSoup
-import requests
-import os
 from captions import captionize
 
 def pinterest(url, count, text, images):
@@ -18,10 +16,26 @@ def pinterest(url, count, text, images):
     grid_centered_div = soup.find('div', {'class': 'gridCentered'})
 
     # Getting images
-    if images:
-        all_pins = grid_centered_div.find_all('img')
+    # if images:
+    #     all_pins = grid_centered_div.find_all('img')
 
-        for index, pin in enumerate(all_pins, start=1):
-            if index <= count:
-                url = pin.get('src').replace('236x', '736x')
-                captionize(url)
+    #     for index, pin in enumerate(all_pins, start=1):
+    #         if index <= count:
+    #             url = pin.get('src').replace('236x', '736x')
+    #             captionize(url)
+
+    # Getting metrics
+    if text:
+        total_pins = soup.find(attrs={"data-test-id": "pin-count"}).get_text().removesuffix(' Pins')
+        print("Pins " + total_pins)
+
+        userdata = soup.find(attrs={"data-test-id": "board-header"})
+        userdata = userdata.find('img')
+        username = userdata.get("alt")
+        user_avatar = userdata.get("src")
+
+        print("Username: " + username)
+        print("Avatar: " + user_avatar)
+
+
+pinterest("https://www.pinterest.com/sithruby/handicraft/", 1, True, False)
