@@ -1,7 +1,7 @@
 # Filename - main.py
 
 # Import flask
-from flask import Flask, json, jsonify, request
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 from ural import get_normalized_hostname
 from pinterest import pinterest
@@ -32,6 +32,7 @@ def analyze():
     text = form_data.get('text')
     images = form_data.get('images')
 
+    # Print received form data
     print('url: ', url)
     print('count: ', count)
     print('text: ', text)
@@ -39,13 +40,11 @@ def analyze():
 
     hostname = get_normalized_hostname(url)
 
-    print(hostname)
-
     if "pinterest" in hostname:
-        pinterest(url, count, text, images)
+        result = pinterest(url, count, text, images)
+        return result
 
-    return jsonify({'message': 'Data received successfully'})
-
+    return jsonify({'message': 'Invalid URL'})
 
 if __name__ == "__main__":
     app.run(debug=True, port=812)
