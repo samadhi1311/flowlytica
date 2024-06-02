@@ -1,4 +1,5 @@
 import requests
+from flask import jsonify
 from PIL import Image
 from transformers import BlipProcessor, BlipForConditionalGeneration
 
@@ -14,6 +15,8 @@ def captionize(url):
 
     out = model.generate(**inputs, max_new_tokens=32)
 
-    print("Caption: ")
-    print(processor.decode(out[0], skip_special_tokens=True))
-    print("\n")
+    caption = processor.decode(out[0], skip_special_tokens=True)
+
+    print("Caption: ", caption)
+
+    return caption
