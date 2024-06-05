@@ -40,10 +40,10 @@ def pinterest(url, count, text, images):
         }
 
     # Getting images
-    grid_centered_div = soup.find('div', {'class': 'gridCentered'})
 
     if images:
         # Getting images
+        grid_centered_div = soup.find('div', {'class': 'gridCentered'})
         all_pins = grid_centered_div.find_all('img')
         captions = []
 
