@@ -5,6 +5,7 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 from ural import get_normalized_hostname
 from pinterest import pinterest
+from youtube import youtube
 
 app = Flask(__name__)
 cors = CORS(app, origins='*')
@@ -43,8 +44,11 @@ def analyze():
     if "pinterest" in hostname:
         result = pinterest(url, count, text, images)
         return result
+    elif "youtube" in hostname:
+        result = youtube(url)
+        return result
 
     return jsonify({'message': 'Invalid URL'})
 
 if __name__ == "__main__":
-    app.run(debug=True, port=812)
+    app.run(debug=True, port=812, threaded=True)
