@@ -46,13 +46,28 @@ def pinterest(url, count, text, images):
         grid_centered_div = soup.find('div', {'class': 'gridCentered'})
         all_pins = grid_centered_div.find_all('img')
         captions = []
+        reactions = []
+        alts = []
 
         for index, pin in enumerate(all_pins, start=1):
             if index <= count:
                 img_url = pin.get('src').replace('236x', '736x')
+
+                alt = pin.get('alt')
+                alts.append({"alt": alt})
+                
+                reaction = grid_centered_div.find('div', class_= 'Shl zI7 iyn Hsu')
+                print(reaction)
+                if (reaction != 'None'):
+                    reactions.append({"reaction": reaction})
+                else:
+                    reactions.append({"reaction": 'None'})
+                
                 caption = captionize(img_url)
                 captions.append({"caption": caption})
 
         userdata["captions"] = captions
+        userdata["reactions"] = reactions
+        userdata["alts"] = alts
 
     return jsonify(userdata)
