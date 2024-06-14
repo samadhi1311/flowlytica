@@ -1,6 +1,20 @@
+<div align="center">
+
 # \_flowlytica
 
+<img src="frontend\assets\20240409_080017_flowlytica-gradient.svg" width="256px" />
+
 '\_flowlytica' is a social media content analyzer to extract insights.
+
+</div>
+
+#### Screens
+
+<div align="center">
+    <img src="frontend\assets\Screenshot (145).png" width="80%" />
+    <img src="frontend\assets\Screenshot (146).png" width="80%" />
+    <img src="frontend\assets\Screenshot (147).png" width="80%" />
+</div>
 
 #### Project Structure
 
