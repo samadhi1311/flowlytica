@@ -44,6 +44,6 @@
 -   [x] Get the URL, count and media types from the frontend and pass to the backend.
 -   [x] Scrape the URL and download media.
 -   [x] Process images and extract captions.
--   [ ] Extract keywords.
--   [ ] Send results as `json` to the frontend.
--   [ ] Visualize results in the frontend.
+-   [x] Extract keywords.
+-   [x] Send results as `json` to the frontend.
+-   [x] Visualize results in the frontend.
