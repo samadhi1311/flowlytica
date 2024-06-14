@@ -7,7 +7,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException, WebDriverException
-import json
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import time
 from bs4 import BeautifulSoup
 
@@ -18,6 +20,7 @@ def youtube(url):
     # options.add_argument('--headless')
     options.add_argument('--disable-gpu')
     options.add_argument("--no-sandbox")
+    options.add_argument("--window-size=1920,1080")
 
     # Use a clean profile
     options.add_argument("--user-data-dir=/tmp/chrome_profile")
@@ -37,7 +40,7 @@ def youtube(url):
         exit(1)
 
     # The URL of the target page
-    url = 'https://www.youtube.com/watch?v=Rb8EDXAlJ6k'
+    url = url
 
     retry_attempts = 3
     for attempt in range(retry_attempts):
@@ -72,20 +75,16 @@ def youtube(url):
     #    print('Cookie modal missing')
 
     # Wait for YouTube to load the page data
-    WebDriverWait(driver, 15).until(
-        EC.visibility_of_element_located((By.CSS_SELECTOR, 'h1.ytd-watch-metadata'))
-    )
+    WebDriverWait(driver, 15).until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'h1.ytd-watch-metadata')))
 
     # Get the page source and parse it with BeautifulSoup
     soup = BeautifulSoup(driver.page_source, 'lxml')
-
-    
 
     # Initialize the dictionary that will contain the data scraped from the YouTube page
     video = {}
 
     # Scraping logic
-    title = soup.select_one('h1.ytd-watch-metadata').text.strip()
+    title = soup.select_one('h1.ytd-watch-metadata').text.strip()    
 
     # Dictionary where to store the channel info
     channel = {}
@@ -119,6 +118,41 @@ def youtube(url):
     likes_element = soup.select_one('.YtLikeButtonViewModelHost .yt-spec-button-shape-next__button-text-content')
     likes = likes_element.text.strip() if likes_element else "N/A"
 
+    # Dictionary where to store comments
+    comments = []
+
+    
+    # Scroll down the page to load comments (adjust the number of scrolls and delay as needed)
+    # num_scrolls = 5  # Number of times to scroll
+    # scroll_delay = 2  # Delay between each scroll (in seconds)
+
+    # for _ in range(num_scrolls):
+    #     # Scroll down to the bottom of the page
+    #     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    #     time.sleep(scroll_delay)  # Wait for content to load
+    # WebDriverWait(driver, 15).until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'yt-attributed-string#content-text.style-scope.ytd-comment-view-model')))
+
+    # Scrape the comments
+    # Find the yt-attributed-string element
+    # <yt-attributed-string id="content-text" slot="content" user-input="" class="style-scope ytd-comment-view-model">
+    # yt_attributed_string = soup.find_all('yt-attributed-string', {'id': 'content-text', 'class': 'style-scope ytd-comment-view-model'})
+    # print(yt_attributed_string)
+
+    # # Find the span element inside yt-attributed-string
+    # if yt_attributed_string:
+    #     span_element = yt_attributed_string.find('span', class_='yt-core-attributed-string yt-core-attributed-string--white-space-pre-wrap')
+    #     if span_element:
+    #         comment_text = span_element.get_text(strip=True)  # Get the text content, stripping extra whitespace
+    #         print(comment_text)
+
+    # Loop through each comment thread and extract the text from the span
+    # for comment_thread in comment_threads:
+    #     comment_span = comment_thread.find('span', class_='yt-core-attributed-string yt-core-attributed-string--white-space-pre-wrap')
+    #     print(comment_span)
+    #     if comment_span:
+    #         comment_text = comment_span.get_text()
+    #         print(comment_text)
+
     video['url'] = url
     video['title'] = title
     video['channel'] = channel
@@ -126,9 +160,10 @@ def youtube(url):
     video['publication_date'] = publication_date
     video['description'] = description
     video['likes'] = likes
+    video['comments'] = comments
 
     # Print the scraped data
-    print(video)
+    # print(video['comments'])
 
     # Close the browser and free up the resources
     driver.quit()
