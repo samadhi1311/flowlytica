@@ -39,6 +39,16 @@ def pinterest(url, count, text, images):
             "pins": total_pins
         }
 
+        reactions_divs = soup.select('div.tBJ.dyH.iFc.dR0.X8m.zDA.IZT.swG')
+        print(reactions_divs)
+        for div in reactions_divs:
+            reaction_text = div.get_text(strip=True)
+            print(f"Extracted text: {reaction_text}")
+            if reaction_text != "":
+                reactions.append({"reaction": reaction_text})
+            else:
+                reactions.append({"reaction": '0'})
+
     # Getting images
 
     if images:
@@ -54,17 +64,12 @@ def pinterest(url, count, text, images):
                 img_url = pin.get('src').replace('236x', '736x')
 
                 alt = pin.get('alt')
-                alts.append({"alt": alt})
-                
-                reaction = grid_centered_div.find('div', class_= 'Shl zI7 iyn Hsu')
-                print(reaction)
-                if (reaction != 'None'):
-                    reactions.append({"reaction": reaction})
-                else:
-                    reactions.append({"reaction": 'None'})
-                
+                alts.append({"alt": alt})                
                 caption = captionize(img_url)
                 captions.append({"caption": caption})
+
+        
+
 
         userdata["captions"] = captions
         userdata["reactions"] = reactions
